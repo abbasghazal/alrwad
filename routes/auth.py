@@ -54,7 +54,7 @@ def send_required_email(to_email: str, subject: str, html_body: str, strict: boo
         if strict:
             raise HTTPException(
                 status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-                detail=f"تعذر إرسال البريد الإلكتروني. سبب الفشل في السجل: {exc.phase}.",
+                detail=f"تعذر إرسال البريد الإلكتروني ({exc.phase}). تحقق من توثيق النطاق وعنوان EMAIL_FROM ومفتاح Resend.",
             ) from exc
         return False
     except Exception as exc:
