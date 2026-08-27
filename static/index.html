@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أكاديمية الرواد التعليمية - تميز، معرفة، وتواصل</title>
+    <!-- خط Cairo المميز من Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- ملف التنسيق المخصص -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <!-- مؤشر التحميل العام للمنصة -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- حاوية التنبيهات العائمة -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- الهيكل الخارجي للمنصة -->
+    <div class="app-layout">
+        <!-- شريط التنقل العلوي -->
+        <header class="main-header">
+            <div class="container header-container">
+                <a href="#/" class="logo-area">
+                    <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <span class="logo-text" id="header-platform-name">أكاديمية الرواد</span>
+                </a>
+                
+                <button class="mobile-nav-toggle" id="mobile-menu-btn" aria-label="القائمة">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <nav class="main-navigation" id="main-nav">
+                    <!-- الروابط العامة والخاصة بالمستخدم سيتم حقنها ديناميكياً -->
+                    <ul class="nav-links" id="nav-links">
+                        <li><a href="#/" class="nav-link active"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
+                        <li><a href="#/subjects-browse" class="nav-link"><i class="fa-solid fa-book-open"></i> استعراض المواد</a></li>
+                        <li class="guest-only"><a href="#/login" class="nav-link btn-login"><i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول</a></li>
+                        <li class="guest-only"><a href="#/register" class="nav-link btn-register"><i class="fa-solid fa-user-plus"></i> حساب جديد</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- المحتوى الأساسي والصفحات (SPA Container) -->
+        <main class="main-content" id="main-content">
+            <!-- سيقوم موجه الصفحات router.js بحقن كود الصفحة النشطة هنا -->
+            <div class="welcome-hero">
+                <h1>جاري تحميل المنصة...</h1>
+                <div class="spinner"></div>
+            </div>
+        </main>
+
+        <!-- شريط المطور / محاكاة البريد الإلكتروني للمراقبة الفورية -->
+        <div class="developer-panel-trigger" id="dev-panel-btn" title="لوحة بريد المطور والمحاكاة">
+            <i class="fa-solid fa-envelope-open-text"></i> <span class="badge" id="dev-email-count">0</span>
+        </div>
+
+        <div class="developer-panel hidden" id="dev-panel">
+            <div class="dev-panel-header">
+                <h3><i class="fa-solid fa-bug"></i> خادم البريد المحاكي (لاختبار الأكواد والتنبيهات)</h3>
+                <button class="btn-close-dev" id="dev-panel-close">&times;</button>
+            </div>
+            <div class="dev-panel-body">
+                <div class="dev-actions">
+                    <button class="btn btn-sm btn-danger" id="dev-clear-emails"><i class="fa-solid fa-trash"></i> مسح الصندوق</button>
+                    <button class="btn btn-sm btn-secondary" id="dev-refresh-emails"><i class="fa-solid fa-rotate"></i> تحديث</button>
+                </div>
+                <div class="dev-emails-list" id="dev-emails-list">
+                    <p class="empty-text">لا توجد رسائل بريد محاكاة حالياً. ستظهر هنا رموز استعادة كلمة المرور والتنبيهات المرسلة.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- تذييل الصفحة -->
+        <footer class="main-footer">
+            <div class="container footer-content">
+                <p>&copy; 2026 منصة أكاديمية الرواد التعليمية. جميع الحقوق محفوظة.</p>
+                <div class="footer-links">
+                    <a href="#/terms">الشروط والأحكام</a>
+                    <a href="#/privacy">سياسة الخصوصية</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- استدعاء ملفات الـ JS البرمجية بالترتيب -->
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/router.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

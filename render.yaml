@@ -1,0 +1,49 @@
+services:
+  - type: web
+    name: alrwad
+    runtime: python
+    plan: free
+    buildCommand: python -m pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: python scripts/check_render_env.py && alembic upgrade head && python -m uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: ENVIRONMENT
+        value: production
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: DEFAULT_OWNER_USERNAME
+        value: admin
+      - key: DEFAULT_OWNER_EMAIL
+        value: admin@alrwad.edu
+      - key: DEFAULT_OWNER_PASSWORD
+        sync: false
+      - key: CORS_ORIGINS
+        value: https://alrwad.onrender.com
+      - key: UPLOAD_ROOT
+        value: /tmp/alrwad_uploads
+      - key: UPLOAD_URL_PREFIX
+        value: /uploads
+      - key: STORAGE_BACKEND
+        value: local
+      - key: STORAGE_PUBLIC_BASE_URL
+        value: ""
+      - key: EMAIL_API_URL
+        value: https://api.resend.com/emails
+      - key: EMAIL_API_KEY
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+      - key: PAYMENT_WEBHOOK_SECRET
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: alrwad-db
+          property: connectionString
+      - key: CSRF_PROTECTION
+        value: "false"
+
+databases:
+  - name: alrwad-db
+    plan: free
